@@ -10,21 +10,21 @@ const INITIAL_STATE = {
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case type.LOGIN_FETCH_REQUEST:
+    case type.REGISTER_SAVE_REQUEST:
       return {
         ...state,
         error: {},
         user: {},
         loading: true,
       };
-    case type.LOGIN_FETCH_SUCCESS:
+    case type.REGISTER_SAVE_SUCCESS:
       return {
         ...state,
         error: {},
         user: action.payload,
         loading: false,
       };
-    case type.LOGIN_FETCH_FAILURE:
+    case type.REGISTER_SAVE_FAILURE:
       return {
         ...state,
         error: action.payload,

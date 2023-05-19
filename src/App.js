@@ -16,46 +16,47 @@ import Register from "./Components/Auth/Register/Register";
 import "./App.scss";
 
 function App() {
-  const [registerBtn, setRegisterBtn] = useState(null);
+  const [registerBtn, setRegisterBtn] = useState(true);
 
   // Animacija sa druge strane applikacije
-  const transitions = useTransition(registerBtn, {
-    from: {
-      opacity: 0,
-      transform: registerBtn ? "translateX(100%)" : "translateX(-100%)",
-    },
-    enter: { opacity: 1, transform: "translateX(0%)" },
-    leave: {
-      opacity: 0,
-      transform: registerBtn ? "translateX(-100%)" : "translateX(100%)",
-    },
-  });
+  // const transitions = useTransition(registerBtn, {
+  //   from: {
+  //     opacity: 0,
+  //     transform: registerBtn ? "translateX(100%)" : "translateX(-100%)",
+  //   },
+  //   enter: { opacity: 1, transform: "translateX(0%)" },
+  //   leave: {
+  //     opacity: 0,
+  //     transform: registerBtn ? "translateX(-100%)" : "translateX(100%)",
+  //   },
+  // });
 
   console.log(registerBtn, "registerBtn");
-  console.log(registerBtn, "registerBtn");
-  console.log(registerBtn, "registerBtn");
+
+  const user = {
+    userName: "aca",
+    surName: "Conic",
+    email: "acaconic99@gmail.com",
+  };
+
   return (
     <Provider store={store}>
       <div className="App">
         <Router>
-          {transitions((style, item) => (
-            <animated.div style={style} className="Auth">
-              <Routes>
-                {registerBtn ? (
-                  <Route
-                    path="/"
-                    element={<Register setRegisterBtn={setRegisterBtn} />}
-                  />
-                ) : (
-                  <Route
-                    path="/"
-                    element={<Login setRegisterBtn={setRegisterBtn} />}
-                  />
-                )}
-                <Route path="/" element={<Navigate to="/" />} />
-              </Routes>
-            </animated.div>
-          ))}
+          <Routes>
+            {registerBtn === true ? (
+              <Route
+                path="/auth"
+                element={<Register setRegisterBtn={setRegisterBtn} />}
+              />
+            ) : (
+              <Route
+                path="/auth"
+                element={<Login setRegisterBtn={setRegisterBtn} />}
+              />
+            )}
+            <Route path="/" element={<Navigate to="/auth" />} />
+          </Routes>
         </Router>
       </div>
     </Provider>

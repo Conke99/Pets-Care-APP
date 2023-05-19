@@ -1,12 +1,25 @@
 import React from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Radio } from "antd";
 
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { registerAction } from "../../../API/Redux/Action/registerAction";
+
 const Register = ({ setRegisterBtn }) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
+
+  const onFinish = (values) => {
+    let formData = {
+      name: values.name,
+      surName: values.surname,
+      email: values.email,
+      password: values.password,
+      type: values.type,
+    };
+    dispatch(registerAction(formData));
+  };
 
   return (
     <div className="Register">
@@ -25,7 +38,6 @@ const Register = ({ setRegisterBtn }) => {
           <button
             onClick={() => {
               setRegisterBtn(false);
-              // navigate("/register");
             }}
           >
             Sign In
@@ -51,22 +63,28 @@ const Register = ({ setRegisterBtn }) => {
             <div className="Divider"></div>
           </div>
           <div className="Register_forms">
-            <Form name="Register" className="Register_form">
+            <Form name="Register" className="Register_form" onFinish={onFinish}>
               <div className="Register_form_wrap">
-                <Form.Item className="Register_form_content">
+                <Form.Item className="Register_form_content" name="name">
                   <Input placeholder="Name" className="singup_input" />
                 </Form.Item>
-                <Form.Item className="Register_form_content">
+                <Form.Item className="Register_form_content" name="surname">
                   <Input placeholder="Surname" className="singup_input" />
                 </Form.Item>
-                <Form.Item className="Register_form_content">
+                <Form.Item className="Register_form_content" name="email">
                   <Input placeholder="Email" className="singup_input" />
                 </Form.Item>
-                <Form.Item className="Register_form_content">
+                <Form.Item className="Register_form_content" name="password">
                   <Input.Password
                     placeholder="Password"
                     className="singup_input"
                   />
+                </Form.Item>
+                <Form.Item className="Register_form_content" name="type">
+                  <Radio.Group className="Register_form_type">
+                    <Radio value="Working">I Need Work</Radio>
+                    <Radio value="Hiring">I'm Hiring</Radio>
+                  </Radio.Group>
                 </Form.Item>
               </div>
               <Button className="Register_input" htmlType="submit">

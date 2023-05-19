@@ -32,6 +32,8 @@ function App() {
   });
 
   console.log(registerBtn, "registerBtn");
+  console.log(registerBtn, "registerBtn");
+  console.log(registerBtn, "registerBtn");
   return (
     <Provider store={store}>
       <div className="App">

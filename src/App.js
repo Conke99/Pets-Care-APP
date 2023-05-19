@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import { store } from "./API/Redux/Store";
 
 import Login from "./Components/Auth//Login/Login";
-import SignUp from "./Components/Auth/Register/SignUp";
+import Register from "./Components/Auth/Register/Register";
 
 import "./App.scss";
 
@@ -44,7 +44,7 @@ function App() {
                 {registerBtn ? (
                   <Route
                     path="/"
-                    element={<SignUp setRegisterBtn={setRegisterBtn} />}
+                    element={<Register setRegisterBtn={setRegisterBtn} />}
                   />
                 ) : (
                   <Route

@@ -22,7 +22,7 @@ const request = (url, reduxState, options) => {
     };
 
     let response;
-    console.log(config, "config");
+
     try {
       response = axios(config);
     } catch (error) {
